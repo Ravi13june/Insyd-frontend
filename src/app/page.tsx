@@ -5,11 +5,11 @@ import io from "socket.io-client";
 export default function Home() {
   interface INotification {
     userId: string,
-    message: String,
-    type: String,
-    read: Boolean,
+    message: string,
+    type: string,
+    read: boolean,
     createdAt:string | number | Date
-    _id:String
+    _id:string
   }
   const baseApiUrl = process.env.NEXT_APP_BASE_API_URL
   const [notifications, setNotifications] = useState<Array<INotification>>([]);
