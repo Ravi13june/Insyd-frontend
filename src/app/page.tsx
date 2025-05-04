@@ -11,10 +11,10 @@ export default function Home() {
     createdAt:string | number | Date
     _id:string
   }
-  const baseApiUrl = process.env.NEXT_APP_BASE_API_URL
   const [notifications, setNotifications] = useState<Array<INotification>>([]);
+  
   const currentUser = "user1";
-  const socket = io(baseApiUrl, {
+  const socket = io(`https://insyd-backend.onrender.com`, {
     query: {
       userId: currentUser,
     },
@@ -23,7 +23,7 @@ export default function Home() {
   useEffect(() => {
     const fetchNotifications = async () => {
       const res = await fetch(
-        `${baseApiUrl}/api/notifications/${currentUser}`
+        `https://insyd-backend.onrender.com/api/notifications/${currentUser}`
       );
       const data = await res.json();
       setNotifications(data);
@@ -52,7 +52,7 @@ export default function Home() {
           <button
             className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
             onClick={() => {
-              fetch(`${baseApiUrl}/api/follow`, {
+              fetch(`https://insyd-backend.onrender.com/api/follow`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -67,7 +67,7 @@ export default function Home() {
           <button
             className="bg-green-500 text-white px-4 py-2 rounded mr-2"
             onClick={() => {
-              fetch(`${baseApiUrl}/api/like`, {
+              fetch(`https://insyd-backend.onrender.com/api/like`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -86,7 +86,7 @@ export default function Home() {
             onClick={() => {
               const comment = prompt("Enter your comment:");
               if (comment) {
-                fetch(`${baseApiUrl}/api/comment`, {
+                fetch(`https://insyd-backend.onrender.com/api/comment`, {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
                   body: JSON.stringify({
